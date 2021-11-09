@@ -46,14 +46,16 @@ bot.createGuild = (message) => {
 bot.createUser = (message) => {
     return {
         id: message.author.id,
-        name: message.author.username
+        name: message.author.username,
+        notes: []
     };
 };
 bot.createMember = (message) => {
     return {
         id: message.author.id,
         name: message.author.username,
-        money: 1000
+        money: 1000,
+        warns: []
     };
 };
 
@@ -87,17 +89,19 @@ for(let keys in bot.Memory.guilds) { //Обновлятель памяти
         }
     }
     for(let key in origin) {
-        if(serv[key] === undefined) delete origin[key];
-        if(isObject(origin[key])) {
-            for(let keyT2 in origin[key]) {
-                if(serv[key][keyT2] === undefined) delete origin[key][keyT2];
-                if(isObject(origin[key][keyT2])) {
-                    for(let keyT3 in origin[key][keyT2]) {
-                        if(serv[key][keyT2][keyT3] === undefined) delete origin[key][keyT2][keyT3];
+        if(key !== "members") {
+            if(serv[key] === undefined) delete origin[key];
+            if(isObject(origin[key])) {
+                for(let keyT2 in origin[key]) {
+                    if(serv[key][keyT2] === undefined) delete origin[key][keyT2];
+                    if(isObject(origin[key][keyT2])) {
+                        for(let keyT3 in origin[key][keyT2]) {
+                            if(serv[key][keyT2][keyT3] === undefined) delete origin[key][keyT2][keyT3];
+                        }
                     }
                 }
-            }
-        } 
+            } 
+        }
     }
     for(let keyer in origin.members) {
         const memberUser = origin.members[keyer];

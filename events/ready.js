@@ -1,6 +1,15 @@
 module.exports = async (bot) => {
     console.log(bot.user.username + " ready");
 
+    bot.user.setPresence({
+        activities: [
+            {
+                name: "Я гайдовый бот и горжусь этим!!",
+                type: 3
+            }
+        ]
+    });
+
     const commandsIT = bot.guilds.cache.get("895231559836270603").commands; //Или bot.application.commands - если команды будут глобальными
     await commandsIT.fetch(); //Найти все команды
 
