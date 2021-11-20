@@ -1,7 +1,5 @@
 module.exports = async (bot,message,args,argsF) => {
 
-    console.log(message);
-
     if(args[0] == "ping") {
         return message.reply({
             content: "pong, pong"

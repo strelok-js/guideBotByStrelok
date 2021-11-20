@@ -21,6 +21,20 @@ for (const file of commandFiles) {
     bot.commands.any.push(comand);
 }
 
+/*const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/DiscordDB'); //Подключение DB
+
+const User = mongoose.Schema({ //Создание схемы
+    id: String,
+    username: {
+        type: String,
+        default: "user"
+    }
+});
+
+const MyModel = mongoose.model('User', User, 'Users'); //Создание модели
+bot.Users = MyModel;*/
+
 bot.Memory = require('./Memory.json');
 
 setInterval(()=> {
@@ -39,6 +53,7 @@ bot.createGuild = (message) => {
     return {
         id: message.guild.id,
         name: message.guild.name,
+        muted: [],
         members: {},
         warns: 0
     };

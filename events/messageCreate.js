@@ -1,10 +1,21 @@
-module.exports = (bot, message) => {
+module.exports = async (bot, message) => {
     if(message.author.bot) return;
     const {content, author, guild} = message;
     const config = require('../config.json');
     config.prefix = "g/";
 
     if(content.slice(0, config.prefix.length) !== config.prefix) return;
+
+    /*const User = await bot.Users.findOne({id: author.id}); //Создание новой записи в DB
+    console.log(User);
+    if(User == null) {
+        const newUser = new bot.Users({
+            id: author.id,
+            username: author.username
+        });
+        newUser.save();
+    }*/
+
 
     if(!bot.Memory.users[author.id]) bot.Memory.users[author.id] = bot.createUser(message);
     if(!bot.Memory.guilds[guild.id]) bot.Memory.guilds[guild.id] = bot.createGuild(message);
@@ -17,7 +28,6 @@ module.exports = (bot, message) => {
         messageArrayFull = content.split(' '), 
         argsF = messageArrayFull.slice(1),
 	    commandRun = bot.commands.get(command);
-        console.log(command);
 
     if(commandRun) commandRun(bot,message,args,argsF)
     //.then(any => console.log(any))
