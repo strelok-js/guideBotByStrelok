@@ -54,6 +54,7 @@ bot.createGuild = (message) => {
         id: message.guild.id,
         name: message.guild.name,
         muted: [],
+        prefix: "g/",
         members: {},
         warns: 0
     };

@@ -1,10 +1,6 @@
 module.exports = async (bot, message) => {
     if(message.author.bot) return;
     const {content, author, guild} = message;
-    const config = require('../config.json');
-    config.prefix = "g/";
-
-    if(content.slice(0, config.prefix.length) !== config.prefix) return;
 
     /*const User = await bot.Users.findOne({id: author.id}); //Создание новой записи в DB
     console.log(User);
@@ -18,12 +14,16 @@ module.exports = async (bot, message) => {
 
 
     if(!bot.Memory.users[author.id]) bot.Memory.users[author.id] = bot.createUser(message);
-    if(!bot.Memory.guilds[guild.id]) bot.Memory.guilds[guild.id] = bot.createGuild(message);
-    if(!bot.Memory.guilds[guild.id].members[author.id]) bot.Memory.guilds[guild.id].members[author.id] = bot.createMember(message);
+    if(guild) {
+        if(!bot.Memory.guilds[guild.id]) bot.Memory.guilds[guild.id] = bot.createGuild(message);
+        if(!bot.Memory.guilds[guild.id].members[author.id]) bot.Memory.guilds[guild.id].members[author.id] = bot.createMember(message);
+    }
+
+    if(content.slice(0, bot.Memory.guilds[guild.id].prefix.length) !== bot.Memory.guilds[guild.id].prefix) return;
     
     const 
         messageArray = content.split(' '), 
-        command = messageArray[0].replace(config.prefix, ""),
+        command = messageArray[0].replace(bot.Memory.guilds[guild.id].prefix, ""),
         args = messageArray.slice(1), 
         messageArrayFull = content.split(' '), 
         argsF = messageArrayFull.slice(1),

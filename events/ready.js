@@ -3,21 +3,16 @@ const later = (delay, value) =>
 module.exports = async (bot) => {
     console.log(bot.user.username + " ready");
 
-    const stats = ["Я бот", "А ты нет"];
+    /*const collors = ["#FF0000", "#00FF00", "#FF1493"]; //Запрещено дискордом!
+    let n = 1;
+    const role = await bot.guilds.cache.get("899200433552252989").roles.fetch("913442305153855518");
+    setInterval(() => {
+        if(collors.length == n) n = 0;
+        role.setColor(collors[n]);
+        n++;
+    }, 60000);
+    role.setColor(collors[0]);*/
 
-    setInterval(async ()=> {
-        for (const ir of stats) {
-            bot.user.setPresence({
-                activities: [
-                    {
-                        name: ir,
-                        type: 3
-                    }
-                ]
-            });
-        }
-        await later(5000);
-    }, 5000);
 
     setInterval(async () => {
         for (const key in bot.Memory.guilds) {
