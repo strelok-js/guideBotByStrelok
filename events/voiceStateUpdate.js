@@ -26,6 +26,6 @@ module.exports = async (bot, oldV, newV) => {
                 newChannel.delete();
                 clearInterval(int);
             }
-        }, 1000*10);
+        }, 1000*2);
     }
 };

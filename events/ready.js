@@ -13,11 +13,19 @@ module.exports = async (bot) => {
     }, 60000);
     role.setColor(collors[0]);*/
 
+    /*const guild = bot.Memory.guilds.get("899200433552252989");
+    guild.clearData; //Извлекает копию данных гильдии
+    //или
+    bot.Memory.guilds.clearData; //Извлекает копию всех данных гильдии в памяти
+    guild.cache; //Получает кэш раздора этой гильдии
+    await guild.fetch(); //Ищет эту гильдию в discord
+    guild.update("name"); //Обновляет / сбрасывает определенный ключ настройки до значения по умолчанию (заданного схемой)
+    //или
+    bot.Memory.guilds.update("name"); //Обновляет / сбрасывает определенный ключ для всех гильдий в памяти*/
 
     setInterval(async () => {
-        for (const key in bot.Memory.guilds) {
-            const guild = bot.Memory.guilds[key];
-            const cacheGuild = bot.guilds.cache.get(key);
+        for (const guild of bot.Memory.guilds) {
+            const cacheGuild = guild.cache;
             for (const it of guild.muted) {
                 if(it.time+it.date<Date.now()) {
                     const user = await cacheGuild.members.fetch(it.id);
