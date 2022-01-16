@@ -13,13 +13,14 @@ module.exports = async (bot, message) => {
     }*/
 
 
-    if(!bot.Memory.users[author.id]) bot.Memory.users[author.id] = bot.createUser(message);
+    /*if(!bot.Memory.users[author.id]) bot.Memory.users[author.id] = bot.createUser(message);
     if(guild) {
         if(!bot.Memory.guilds[guild.id]) bot.Memory.guilds[guild.id] = bot.createGuild(message);
         if(!bot.Memory.guilds[guild.id].members[author.id]) bot.Memory.guilds[guild.id].members[author.id] = bot.createMember(message);
-    }
+    }*/
 
-    if(content.slice(0, bot.Memory.guilds[guild.id].prefix.length) !== bot.Memory.guilds[guild.id].prefix) return;
+    if(!bot.Memory.guilds.get(guild.id)) return;
+    if(content.slice(0, bot.Memory.guilds.get(guild.id).prefix.length) !== bot.Memory.guilds.get(guild.id).prefix) return;
     
     const 
         messageArray = content.split(' '), 
