@@ -1,6 +1,6 @@
 module.exports = async (bot,message,args,argsF) => {
 
-    if(args[0] == "ping") {
+    if(args[0] == "ping" || args.any == "ping") {
         return message.reply({
             content: "pong, pong"
         });
