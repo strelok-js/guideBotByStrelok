@@ -8,7 +8,7 @@ module.exports = async (bot,message,args,argsF) => {
     message.reply({
         embeds: [{
             title: `Аватарка хорошего человека`,
-            description: `И его зовут user?user:author`,
+            description: `И его зовут ${user?user:author}`,
             image: {url}
         }]
     });
