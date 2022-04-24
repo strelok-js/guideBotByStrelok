@@ -1,12 +1,9 @@
 module.exports = async (bot,message,args,argsF) => {
-
-    const user = message.mentions.users.first();
-    const colorrole = message.mentions.members.first().displayColor;
-    const {author} = message;
-    const url = await (user?user:author).avatarURL({dynamic: true, size: 512});
+    const {author,member} = message;
+    const user = message.mentions.members.first();
+    const colorrole = await (user||member).displayColor;
+    const url = await (user||member).user.avatarURL({dynamic: true, size: 512});
     if(!url) return message.reply("У него нет авы!");
-    if(!user) return message.reply("Вы не упомянули пользователя!");
-
     message.reply({
         embeds: [{
             title: `Аватарка хорошего человека`,
