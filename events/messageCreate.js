@@ -19,6 +19,9 @@ module.exports = async (bot, message) => {
         if(!bot.Memory.guilds[guild.id].members[author.id]) bot.Memory.guilds[guild.id].members[author.id] = bot.createMember(message);
     }*/
 
+    if(content == "g/tex") bot.tex = !bot.tex;
+
+
     if(!bot.Memory.guilds.get(guild.id)) return;
     if(content.slice(0, bot.Memory.guilds.get(guild.id).prefix.length) !== bot.Memory.guilds.get(guild.id).prefix) return;
     
@@ -30,8 +33,13 @@ module.exports = async (bot, message) => {
         argsF = messageArrayFull.slice(1),
 	    commandRun = bot.commands.get(command);
 
-    if(commandRun) commandRun(bot,message,args,argsF)
-    //.then(any => console.log(any))
-    .catch(err => console.error(err));
+    if(commandRun) {
+        if(bot.tex) return message.reply("Бот на тех обслуживании");
+        commandRun(bot,message,args,argsF)
+        .catch(err => console.error(err));
+        //.then(any => console.log(any))
+    } 
+
+    
 
 };

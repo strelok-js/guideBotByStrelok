@@ -1,5 +1,6 @@
 module.exports = async (bot, interaction) => {
     if(!interaction.isCommand()) return; //Проверка на слэш команду
+    if(bot.tex) return interaction.reply("Бот на тех обслуживании");
     const argsF = {}; //Создание аргументов
     argsF.slash = true;
     if(interaction.options._group) argsF.group = interaction.options._group; //Если это группа - добавить в аргумент

@@ -2,6 +2,7 @@ const {Permissions} = require('discord.js');
 const later = (delay, value) =>
     new Promise(resolve => setTimeout(resolve, delay, value));
 module.exports = async (bot, oldV, newV) => {
+    if(bot.tex) return;
     const idVoiceChannel = "913429096640417833";
     const member = await newV.guild.members.fetch(newV.id);
     if(newV.channelId == idVoiceChannel) {

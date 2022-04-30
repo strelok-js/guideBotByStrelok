@@ -4,6 +4,7 @@ module.exports = (guild = {id: "!", name: "!"}) => {
         name: guild.name,
         muted: [],
         prefix: "g/",
+        lang: 0,
         members: {},
         warns: 0
     };
