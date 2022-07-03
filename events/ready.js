@@ -3,6 +3,9 @@ const later = (delay, value) =>
 module.exports = async (bot) => {
     console.log(bot.user.username + " ready");
 
+    console.log(bot.Memory.console);
+    //console.log(bot.Memory.consoleClear);
+
     /*const collors = ["#FF0000", "#00FF00", "#FF1493"]; //Запрещено дискордом!
     let n = 1;
     const role = await bot.guilds.cache.get("899200433552252989").roles.fetch("913442305153855518");

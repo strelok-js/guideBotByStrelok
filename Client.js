@@ -36,42 +36,4 @@ const MyModel = mongoose.model('User', User, 'Users'); //Создание мод
 bot.Users = MyModel;*/
 
 const DiscordDB = require('simple-discord.db');
-bot.Memory = new DiscordDB("Memory", bot);
-
-/*bot.createGuild = (guild = {id: "!", name: "!"}) => {
-    return {
-        id: guild.id,
-        name: guild.name,
-        muted: [],
-        prefix: "g/",
-        members: {},
-        warns: 0
-    };
-};
-bot.createUser = (user = {id: "!", username: "!"}) => {
-    return {
-        id: user.id,
-        name: user.username,
-        notes: []
-    };
-};
-bot.createMember = (member = {id: "!", user: {username:"!"}, guild: {id: "!"}}) => {
-    return {
-        id: member.id,
-        name: member.user.username,
-        guildId: member.guild.id,
-        money: 1000,
-        warns: []
-    };
-};
-
-(async function () {
-    await bot.Memory.create();
-    bot.Memory.setAutoStart(true);
-    bot.Memory.setBackUp(1000*60*60*4);
-    bot.Memory.setAutoSave(1000*60*60);
-    bot.Memory.setGuilds(bot.createGuild);
-    bot.Memory.setUsers(bot.createUser);
-    bot.Memory.setMembers(bot.createMember);
-    bot.Memory.save();
-}());*/
+bot.Memory = new DiscordDB("MemoryDB", bot);

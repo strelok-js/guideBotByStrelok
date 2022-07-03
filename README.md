@@ -4,16 +4,17 @@
  и для наглядной демонстрации для канала Strelok js (https://www.youtube.com/channel/UCWlYRaFMCJ_WlFZyoR7-4Ag)
  
  Это не готовый бот - это тестовая подоснова открытая для копирования
+ Скачивать бота в попытках запустить - дело гиблое. Он тут для демонстрации кода, но не скачивания.
 
- Для работы бота необходим discord.js@13.2.1, fs, simple-discord.db, canvas.
+ Для работы бота необходим discord.js@13.8.1, fs, simple-discord.db@0.1.0, canvas.
  Установить библиотеку можно npm install <название библиотеки>
- Например: npm install discord.js@13.2.1
+ Например: npm install discord.js@13.8.1
 
 # Инструкция по установке
 
  Для установки всех библиотек, используйте:
 
-  npm install discord.js@13.2.1 fs simple-discord.db canvas
+  npm install discord.js@13.8.1 fs simple-discord.db@0.1.0 canvas
 
 # Помощь
 

@@ -1,5 +1,22 @@
 module.exports = async (bot,message,args,argsF) => {
 
+    const {author,guild} = message;
+    const {Memory} = bot;
+    const memGuild = Memory.guilds.get(guild.id),
+    memUser = Memory.users.get(author.id),
+    memMember = memGuild.members.get(author.id);
+
+    /*memGuild.money+=10;
+    memGuild.cache == guild;
+    Memory.guilds.update("money");
+    memGuild.update("money");
+
+    for (const guild of Memory.guilds) {
+        
+    }
+
+    Memory.save();*/
+
     if(args[0] == "ping" || args.any == "ping") {
         return message.reply({
             content: "pong, pong"

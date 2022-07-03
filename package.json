@@ -4,6 +4,6 @@
     "discord.js": "^13.7.0",
     "install": "^0.13.0",
     "mongoose": "^6.0.13",
-    "simple-discord.db": "^0.0.4"
+    "simple-discord.db": "^0.1.0"
   }
 }
