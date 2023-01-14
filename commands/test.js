@@ -72,29 +72,30 @@ module.exports = async (bot,message,args,argsF) => {
     
     const collector = await msg.createMessageComponentCollector();
 
-    collector.on('collect', Interaction => {
+    collector.on('collect', async Interaction => {
 
         if(Interaction.customId == "selectmenu") {
             if(Interaction.values[0] == "one") {
-                Interaction.reply({ephemeral: true, content: `Изменено`});
+                await Interaction.reply({ephemeral: true, content: `Изменено`});
                 action2.components[0].options[0].default = true;
-                msg.edit({
+                await msg.edit({
                     content: "test",
                     components: [action, action2]
-                });
+                })
+                .catch(err => null);
             }
 
             if(Interaction.values[0] == "two") {
-                Interaction.reply({ephemeral: true, content: `id опции: ${Interaction.values[0]}`});
+                await Interaction.reply({ephemeral: true, content: `id опции: ${Interaction.values[0]}`});
             }
         }
 
         if(Interaction.customId == "nope") {
-            Interaction.reply({ephemeral: true});
+            await Interaction.reply({ephemeral: true});
         }
 
         if(Interaction.customId == "ids") {
-            Interaction.reply({ephemeral: true, content: `id кнопки: ${Interaction.customId}`});
+            await Interaction.reply({ephemeral: true, content: `id кнопки: ${Interaction.customId}`});
         }
 
     });
