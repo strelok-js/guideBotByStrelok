@@ -3,12 +3,12 @@ module.exports = async (bot,message,args,argsF) => {
 
     const user = message.mentions.users.first();   
 
-    if(!message.channel.permissionsFor(message.author).has(Permissions.FLAGS.BAN_MEMBERS)) {
-        return message.reply("У тебя не достаточно прав");
-    }
+    if(!message.channel.permissionsFor(message.author).has(Permissions.FLAGS.BAN_MEMBERS)) return message.reply("У тебя не достаточно прав");
+    
     if(!user) return message.reply("Упомяни пользователя!");
 
     const userMember = bot.Memory.guilds[message.guild.id].members[user.id];
+    
     if(!userMember) return message.reply("Человека нет!");
 
     if(userMember.warns.length >= 2) {
@@ -44,27 +44,33 @@ module.exports = async (bot,message,args,argsF) => {
         
         const collector = await msg.createMessageComponentCollector();
     
-        collector.on('collect', Interaction => {
+        collector.on('collect', async Interaction => {
             if(Interaction.user.id !== message.author.id) return message.reply({content: "Не ты банишь"});
             if(Interaction.customId == "ban") {
-                msg.edit({
+                await msg.edit({
                     embeds: [{
                         title: "Забанен"
                     }],
                     components: []
-                });
+                })
+                .catch(err => null)
                 const member = message.guild.members.cache.get(user.id);
-                member.ban();
+                
+                await member.ban()
+                .catch(err => message.reply("Ошибка! Участника нельзя забанить."));
+                
                 userMember.warns = [];
+                bot.Memory.save()
             }
 
             if(Interaction.customId == "noban") {
-                msg.edit({
+                await msg.edit({
                     embeds: [{
                         title: "Ладно, прощаем"
                     }],
                     components: []
-                });
+                })
+                .catch(err => null);
             }
             
         });
@@ -74,7 +80,8 @@ module.exports = async (bot,message,args,argsF) => {
             id: userMember.warns.length,
             reason: argsF.slice(1).join(" ")
         });
-        message.reply({content: "Варн добавлен"});
+        await message.reply({content: "Варн добавлен"});
+        bot.Memory.save()
     }
 
     /*
