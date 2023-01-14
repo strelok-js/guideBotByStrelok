@@ -1,10 +1,10 @@
 const {Permissions} = require('discord.js');
-const later = (delay, value) =>
-    new Promise(resolve => setTimeout(resolve, delay, value));
 module.exports = async (bot, oldV, newV) => {
     if(bot.tex) return;
+    
     const idVoiceChannel = "913429096640417833";
     const member = await newV.guild.members.fetch(newV.id);
+    
     if(newV.channelId == idVoiceChannel) {
         const newChannel = await newV.guild.channels.create(member.user.username, {
             type: 'GUILD_VOICE',
@@ -18,15 +18,23 @@ module.exports = async (bot, oldV, newV) => {
                     ],
                 },
             ],
-        });
+        })
+        .catch(err => console.log(err));
+        
         if(member.voice) {
-            member.voice.setChannel(newChannel.id);
+            await member.voice.setChannel(newChannel.id)
+            .catch(err => console.log(err));
         }
-        const int = setInterval(() => {
+        
+        const int = setInterval(async () => {
             if(!newChannel.members || !newChannel.members.size) {
-                newChannel.delete();
+                
+                await newChannel.delete()
+                .catch(err => console.log(err));
+                
                 clearInterval(int);
             }
-        }, 1000*2);
+        }, 2000);
+        
     }
 };
