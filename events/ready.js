@@ -4,6 +4,7 @@ module.exports = async (bot) => {
     console.log(bot.user.username + " ready");
 
     console.log(bot.Memory.console);
+    
     //console.log(bot.Memory.consoleClear);
 
     /*const collors = ["#FF0000", "#00FF00", "#FF1493"]; //Запрещено дискордом!
@@ -48,8 +49,8 @@ module.exports = async (bot) => {
             0: bot.channels.cache.get("911653631076491306"),
             1: bot.channels.cache.get("911653687431143465"),
         };
-        channels[0].setName("Участников: " + guildData.memberCount);
-        channels[1].setName("Ботов: " + guildData.members.cache.filter(user=>user.user.bot).size);
+        channels[0].setName("Участников: " + guildData.memberCount).catch(err => console.log(err));
+        channels[1].setName("Ботов: " + guildData.members.cache.filter(user=>user.user.bot).size).catch(err => console.log(err));
     }, 20000);
 
     const commandsIT = bot.guilds.cache.get("895231559836270603").commands; //Или bot.application.commands - если команды будут глобальными
