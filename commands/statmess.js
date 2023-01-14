@@ -15,7 +15,8 @@ module.exports = async (bot,message,args,argsF) => {
     
     const msg = await message.channel.send(`У нас тут ${getUserSize()} людей в войсах`);
     setInterval(() => {
-        msg.edit(`У нас тут ${getUserSize()} людей в войсах`);
+        msg.edit(`У нас тут ${getUserSize()} людей в войсах`)
+        .catch(err => null);
     }, 10000);
 };
 module.exports.names = ["statvoice"];
