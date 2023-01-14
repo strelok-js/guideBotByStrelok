@@ -54,7 +54,8 @@ module.exports = async (bot,message,args,argsF) => {
 
 
     setTimeout(()=> {
-        msg.delete();
+        msg.delete()
+        .catch(err => null);
     }, 10000);
 
 };
